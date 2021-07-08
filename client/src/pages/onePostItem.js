@@ -4,7 +4,7 @@ import { Button, Card, Col, Container, Row, Form } from 'react-bootstrap';
 import { observer } from 'mobx-react-lite';
 import { useParams, useHistory } from 'react-router-dom';
 import { fetchOnePost } from '../http/postApi';
-//import { PERSONAL_ROUTE } from '../utils/const';
+import { PERSONAL_ROUTE } from '../utils/const';
 import DeleteModal from '../components/modal/deleteModal';
 
 const PostItem = observer(() => {
@@ -98,7 +98,7 @@ const PostItem = observer(() => {
                               className="d-flex align-items-end"
                               variant="outline-primary"
                               style={{ width: '120px' }}
-                              //onClick={updateDescription}
+                              onClick={updateDescription}
                            >
                               Редактировать
                            </Button>{' '}
