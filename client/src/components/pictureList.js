@@ -1,6 +1,7 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useContext, useState, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../index';
+import { fetchPost } from '../http/postApi';
 import {
    InputGroup,
    Dropdown,
