@@ -43,7 +43,7 @@ const CommentPage = observer(() => {
       window.location.reload();
    };
 
-   const filterComment = commentList.filter((post) => post.pictureId == id);
+   const filterComment = commentList.filter((post) => post.pictureId === id);
 
    return (
       <>
