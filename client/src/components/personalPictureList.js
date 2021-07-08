@@ -1,7 +1,8 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useHistory } from 'react-router-dom';
 import { Context } from '../index';
+import { fetchPost } from '../http/postApi';
 import { InputGroup, Dropdown, DropdownButton, Button } from 'react-bootstrap';
 import PersonalPictureItem from './personalPictureItem';
 import jwt_decode from 'jwt-decode';
@@ -12,15 +13,20 @@ const PersonalPictureList = observer(() => {
    const userId = localStorage.getItem('token');
    const parseUser = jwt_decode(userId);
    const history = useHistory();
+   const [picture, setPictures] = useState([]);
 
-   const filterPost = pictureItem.pictures.filter(
+   useEffect(() => {
+      fetchPost(null).then((data) => setPictures(data));
+   }, []);
+
+   const filterPost = picture.filter(
       (post) => post.userId === parseUser.id
    );
-   console.log(filterPost);
+   const postReverse = filterPost.reverse()
+
    return (
       <Fragment>
-         <InputGroup className="mb-3">
-            <InputGroup className="mb-3">
+            <InputGroup className="m-auto">
                <DropdownButton
                   size="sm"
                   className="ml-5"
@@ -49,11 +55,10 @@ const PersonalPictureList = observer(() => {
                   Добавить изображение
                </Button>
             </InputGroup>
-         </InputGroup>
 
          <div className="card__list">
             <div className="card__inner">
-               {filterPost.map((picture) => (
+               {postReverse.map((picture) => (
                   <PersonalPictureItem key={picture.id} picture={picture} />
                ))}
             </div>

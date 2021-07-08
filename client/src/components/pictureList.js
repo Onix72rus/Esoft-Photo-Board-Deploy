@@ -12,10 +12,17 @@ import PictureItem from './pictureItem';
 const PictureList = observer(() => {
    const { pictureItem } = useContext(Context);
    const [valueSerch, setValueSerch] = useState('');
+   const [picture, setPictures] = useState([]);
 
-   const filterPost = pictureItem.pictures.filter((post) => {
+   useEffect(() => {
+      fetchPost(null).then((data) => setPictures(data));
+   }, []);
+
+   const filterPost = picture.filter((post) => {
       return post.name.toLowerCase().includes(valueSerch.toLowerCase());
    });
+   
+   const postReverse = filterPost.reverse()
 
    return (
       <Fragment>
@@ -50,7 +57,7 @@ const PictureList = observer(() => {
 
          <div className="card__list">
             <div className="card__inner">
-               {filterPost.map((picture) => (
+               {postReverse.map((picture) => (
                   <PictureItem key={picture.id} picture={picture} />
                ))}
             </div>
