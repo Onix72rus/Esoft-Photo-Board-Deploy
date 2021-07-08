@@ -22,7 +22,6 @@ const PictureList = observer(() => {
    const filterPost = picture.filter((post) => {
       return post.name.toLowerCase().includes(valueSerch.toLowerCase());
    });
-   
    const postReverse = filterPost.reverse()
 
    return (

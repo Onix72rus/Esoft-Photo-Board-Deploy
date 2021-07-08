@@ -24,8 +24,10 @@ const PersonalPictureList = observer(() => {
    );
    const postReverse = filterPost.reverse()
 
+
    return (
       <Fragment>
+ 
             <InputGroup className="m-auto">
                <DropdownButton
                   size="sm"
