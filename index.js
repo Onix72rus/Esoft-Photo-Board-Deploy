@@ -7,7 +7,7 @@ const router = require('./routers/index');
 const path = require('path');
 const errorMiddleware = require('./middleWare/errorMiddleware');
 require('dotenv').config();
-favicon = require("serve-favicon")
+const favicon = require("serve-favicon")
 
 const PORT = process.env.PORT || 5000;
 
