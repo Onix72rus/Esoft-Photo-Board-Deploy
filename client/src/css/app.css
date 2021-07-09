@@ -406,6 +406,10 @@ button{
       margin-right: auto;
   }
 
+  .card__img {
+   height: 240px;
+ }
+
 }
 
 @media (max-width: 945px) {
