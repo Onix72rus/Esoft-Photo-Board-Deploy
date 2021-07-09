@@ -9,20 +9,33 @@ import {
    FormControl,
 } from 'react-bootstrap';
 import PictureItem from './pictureItem';
+import Pagination from './pagination';
 
 const PictureList = observer(() => {
    const { pictureItem } = useContext(Context);
    const [valueSerch, setValueSerch] = useState('');
    const [picture, setPictures] = useState([]);
+   const [currenPage, setCurrenPage] = useState(1);
+   const [picturePerPage] = useState(12);
 
    useEffect(() => {
       fetchPost(null).then((data) => setPictures(data));
    }, []);
 
-   const filterPost = picture.filter((post) => {
+   const lastPictureIndex = currenPage * picturePerPage;
+   const firstPictureIndex = lastPictureIndex - picturePerPage;
+   const currenPicture = pictureItem.pictures.slice(
+      firstPictureIndex,
+      lastPictureIndex
+   );
+
+   const paginate = (pageNumber) => setCurrenPage(pageNumber);
+
+   const filterPost = currenPicture.filter((post) => {
       return post.name.toLowerCase().includes(valueSerch.toLowerCase());
    });
-   const postReverse = filterPost.reverse()
+
+   const postReverse = filterPost.reverse();
 
    return (
       <Fragment>
@@ -62,6 +75,11 @@ const PictureList = observer(() => {
                ))}
             </div>
          </div>
+         <Pagination
+            picturePerPage={picturePerPage}
+            totalPicture={picture.length}
+            paginate={paginate}
+         />
       </Fragment>
    );
 });

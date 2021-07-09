@@ -13,50 +13,47 @@ const PersonalPictureList = observer(() => {
    const userId = localStorage.getItem('token');
    const parseUser = jwt_decode(userId);
    const history = useHistory();
-   const [picture, setPictures] = useState([]);
 
    useEffect(() => {
-      fetchPost(null).then((data) => setPictures(data));
+      fetchPost(null);
    }, []);
 
-   const filterPost = picture.filter(
+   const filterPost = pictureItem.pictures.filter(
       (post) => post.userId === parseUser.id
    );
-   const postReverse = filterPost.reverse()
-
+   const postReverse = filterPost.reverse();
 
    return (
       <Fragment>
- 
-            <InputGroup className="m-auto">
-               <DropdownButton
-                  size="sm"
-                  className="ml-5"
-                  as={InputGroup.Prepend}
-                  variant="outline-secondary"
-                  title={
-                     pictureItem.selectedType.name || 'Выберите тип изображения'
-                  }
-                  id="input-group-dropdown-1"
-               >
-                  {pictureItem.types.map((type) => (
-                     <Dropdown.Item
-                        as="button"
-                        onClick={() => pictureItem.setSelectedType(type)}
-                        key={type.id}
-                     >
-                        {type.name}
-                     </Dropdown.Item>
-                  ))}
-               </DropdownButton>
-               <Button
-                  size="sm"
-                  onClick={() => history.push(ADD_PICTURE)}
-                  variant="outline-secondary"
-               >
-                  Добавить изображение
-               </Button>
-            </InputGroup>
+         <InputGroup className="m-auto">
+            <DropdownButton
+               size="sm"
+               className="ml-5"
+               as={InputGroup.Prepend}
+               variant="outline-secondary"
+               title={
+                  pictureItem.selectedType.name || 'Выберите тип изображения'
+               }
+               id="input-group-dropdown-1"
+            >
+               {pictureItem.types.map((type) => (
+                  <Dropdown.Item
+                     as="button"
+                     onClick={() => pictureItem.setSelectedType(type)}
+                     key={type.id}
+                  >
+                     {type.name}
+                  </Dropdown.Item>
+               ))}
+            </DropdownButton>
+            <Button
+               size="sm"
+               onClick={() => history.push(ADD_PICTURE)}
+               variant="outline-secondary"
+            >
+               Добавить изображение
+            </Button>
+         </InputGroup>
 
          <div className="card__list">
             <div className="card__inner">
