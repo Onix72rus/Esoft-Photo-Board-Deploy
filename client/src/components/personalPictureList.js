@@ -7,18 +7,31 @@ import { InputGroup, Dropdown, DropdownButton, Button } from 'react-bootstrap';
 import PersonalPictureItem from './personalPictureItem';
 import jwt_decode from 'jwt-decode';
 import { ADD_PICTURE } from '../utils/const';
+import Pagination from './pagination';
 
 const PersonalPictureList = observer(() => {
    const { pictureItem } = useContext(Context);
    const userId = localStorage.getItem('token');
    const parseUser = jwt_decode(userId);
    const history = useHistory();
+   const [picture, setPictures] = useState([]);
+   const [currenPage, setCurrenPage] = useState(1);
+   const [picturePerPage] = useState(12);
 
    useEffect(() => {
-      fetchPost(null);
+      fetchPost(null).then((data) => setPictures(data));
    }, []);
 
-   const filterPost = pictureItem.pictures.filter(
+   const lastPictureIndex = currenPage * picturePerPage;
+   const firstPictureIndex = lastPictureIndex - picturePerPage;
+   const currenPicture = pictureItem.pictures.slice(
+      firstPictureIndex,
+      lastPictureIndex
+   );
+
+   const paginate = (pageNumber) => setCurrenPage(pageNumber);
+
+   const filterPost = currenPicture.filter(
       (post) => post.userId === parseUser.id
    );
    const postReverse = filterPost.reverse();
@@ -62,6 +75,11 @@ const PersonalPictureList = observer(() => {
                ))}
             </div>
          </div>
+         <Pagination
+            picturePerPage={picturePerPage}
+            totalPicture={picture.length}
+            paginate={paginate}
+         />
       </Fragment>
    );
 });

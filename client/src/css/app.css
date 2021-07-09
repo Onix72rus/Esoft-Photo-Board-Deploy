@@ -40,6 +40,7 @@ p {
    display: flex;
    flex-wrap: wrap;
    margin: 0 -15px;
+   min-width: 100%;
 }
 
 .card__item {
