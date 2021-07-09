@@ -4,10 +4,10 @@ const pg = require('pg');
 pg.defaults.ssl = true;
 
 module.exports = new Sequelize({
-   database: "d5p32b5f96c73a",
-   username: "sqqtjjenzsdwjy",
-   password: "8a48fa0c16516a302a58484cdf4862cf55f4f5befa54134e0ebcf07d096d5ca8",
-   host: "ec2-3-226-134-153.compute-1.amazonaws.com",
+   database: "d5ac9auee5sp22",
+   username: "gbahphvnudxcza",
+   password: "a5a19758871473d41825c3b7ef013bd014dca64d05da36176908d582497db53d",
+   host: "ec2-54-155-35-88.eu-west-1.compute.amazonaws.com",
    port: 5432,
    dialect: "postgres",
    dialectOptions: {
