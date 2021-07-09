@@ -31,7 +31,7 @@ const Board = observer(() => {
       <Fragment>
          {user.isAuth === false && <Redirect to={LOGIN_ROUTE} />}
 
-         <div style={{ height: 120 }}></div>
+         <div style={{ height: 110 }}></div>
 
          <NavBar />
 

@@ -89,15 +89,10 @@ const CommentPage = observer(() => {
 
             <br />
 
-            <div className="d-flex justify-content-end">
-               <Button
-                  size="sm"
-                  type="submit"
-                  variant="outline-primary"
-                  onClick={addComment}
-               >
+            <div className="button">
+               <button type="submit" onClick={addComment}>
                   Отправить
-               </Button>
+               </button>
             </div>
          </div>
       </>

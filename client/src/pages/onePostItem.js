@@ -43,7 +43,6 @@ const PostItem = observer(() => {
          <div style={{ height: 120 }}></div>
          <Container fluid="sm">
             <Row>
-               <Col>
                   <Card className="ml-2 m-auto" style={{ width: '45%' }}>
                      <a href={"/" + picture.img}>
                         <Card.Img
@@ -84,28 +83,25 @@ const PostItem = observer(() => {
 
                         <br />
 
-                        <div className="d-flex justify-content-between">
-                           <Button
-                              size="sm"
-                              variant="outline-danger"
-                              style={{ width: '120px' }}
+                        <div className="button__edit--page">
+                           <button
+                              className="button__danger"
+                              type="submit"
                               onClick={() => setModalShow(true)}
                            >
                               Удалить
-                           </Button>{' '}
-                           <Button
-                              size="sm"
-                              className="d-flex align-items-end"
-                              variant="outline-primary"
-                              style={{ width: '120px' }}
+                           </button>
+
+                           <button
+                              className="button__edit"
+                              type="submit"
                               onClick={updateDescription}
                            >
                               Редактировать
-                           </Button>{' '}
+                           </button>
                         </div>
                      </Card.Body>
                   </Card>
-               </Col>
             </Row>
          </Container>
 
